@@ -6,30 +6,32 @@ import './sidebar.css';
   
 function Sidebar() {
   return (
-
     <>
-    
-    
-   
     <div className="sidebar">
       <div className="sidebarWrapper">
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
-            <Link to="/" className="link">
+            <Link to="/home" className="link">
               <li className="sidebarListItem active">
-                Home
+              Create Movie
               </li>
             </Link>
-            <li className="sidebarListItem">
-            Users
+            <Link to='/newuser' className="link">
+               <li className="sidebarListItem">
+            Create Admin
             </li>
+            </Link>
+         
+         <Link  to='/list' className="link"> 
+             <li className="sidebarListItem">
+             Movie List
+            </li>
+         </Link>
+        
           
           </ul>
         </div>
-   
-     
-
       </div>
     </div>
     </>

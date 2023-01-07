@@ -1,74 +1,153 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
 import './movie.css'
 function Movie() {
-  return (
-    <div className="product">
-    <div className="productTitleContainer">
-      <h1 className="productTitle">Movie</h1>
-      <Link to="/newproduct">
-        <button className="productAddButton">Create</button>
-      </Link>
-    </div>
-    <div className="productTop">
-      <div className="productTopRight">
-        <div className="productInfoTop">
-          <img src='' alt="" className="productInfoImg" />
-          <span className="productName">'movie.title'</span>
-        </div>
-        <div className="productInfoBottom">
-          <div className="productInfoItem">
-            <span className="productInfoKey">id:</span>
-            <span className="productInfoValue">'movie._id'</span>
-          </div>
-          <div className="productInfoItem">
-            <span className="productInfoKey">genre:</span>
-            <span className="productInfoValue">'movie.genre'</span>
-          </div>
-          <div className="productInfoItem">
-            <span className="productInfoKey">year:</span>
-            <span className="productInfoValue">'movie.year'</span>
-          </div>
-          <div className="productInfoItem">
-            <span className="productInfoKey">limit:</span>
-            <span className="productInfoValue">'movie.limit'</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div className="productBottom">
-      <form className="productForm">
-        <div className="productFormLeft">
-          <label>Movie Title</label>
-          <input type="text" placeholder='movie title' />
-          <label>Year</label>
-          <input type="text" placeholder='movie.year' />
-          <label>Genre</label>
-          <input type="text" placeholder='movie.genre' />
-          <label>Limit</label>
-          <input type="text" placeholder='movie.limit' />
-          <label>Trailer</label>
-          <input type="file" placeholder='movie.trailer' />
-          <label>Video</label>
-          <input type="file" placeholder='movie.video' />
-        </div>
-        <div className="productFormRight">
-          <div className="productUpload">
-            <img
-              src=''
-              alt=""
-              className="productUploadImg"
-            />
-            <label for="file">
+  const [movie, setMovie] = useState(null);
+  const [img, setImg] = useState(null);
+  const [imgTitle, setImgTitle] = useState(null);
+  const [imgSm, setImgSm] = useState(null);
+  const [trailer, setTrailer] = useState(null);
+  const [video, setVideo] = useState(null);
+
+
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setMovie({ ...movie, [e.target.name]: value });
+  };
+
+console.log(movie);
+console.log(img);
+console.log(video);
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+ 
+    var reader = new FileReader();
+    reader.onload = function(event) {
+      // The file's text will be printed here
+      console.log(event.target.result)
+    };
   
-            </label>
-            <input type="file" id="file" style={{ display: "none" }} />
-          </div>
-          <button className="productButton">Update</button>
+    reader.readAsText(video);
+ 
+ 
+  };
+  return (
+    <div className="newProduct">
+      <h1 className="addProductTitle">New Movie</h1>
+      <form className="addProductForm">
+        <div className="addProductItem">
+          <label>Image</label>
+          <input
+            type="file"
+            id="img"
+            name="img"
+            onChange={(e) => setImg(e.target.files[0])}
+          />
         </div>
+        <div className="addProductItem">
+          <label>Title image</label>
+          <input
+            type="file"
+            id="imgTitle"
+            name="imgTitle"
+            onChange={(e) => setImgTitle(e.target.files[0])}
+          />
+        </div>
+        <div className="addProductItem">
+          <label>Thumbnail image</label>
+          <input
+            type="file"
+            id="imgSm"
+            name="imgSm"
+            onChange={(e) => setImgSm(e.target.files[0])}
+          />
+        </div>
+        <div className="addProductItem">
+          <label>Title</label>
+          <input
+            type="text"
+            placeholder="John Wick"
+            name="title"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="addProductItem">
+          <label>Description</label>
+          <input
+            type="text"
+            placeholder="description"
+            name="desc"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="addProductItem">
+          <label>Year</label>
+          <input
+            type="text"
+            placeholder="Year"
+            name="year"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="addProductItem">
+          <label>Genre</label>
+          <input
+            type="text"
+            placeholder="Genre"
+            name="genre"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="addProductItem">
+          <label>Duration</label>
+          <input
+            type="text"
+            placeholder="Duration"
+            name="duration"
+            onChange={handleChange}
+          />
+        </div>
+        {/* <div className="addProductItem">
+          <label>Limit</label>
+          <input
+            type="text"
+            placeholder="limit"
+            name="limit"
+            onChange={handleChange}
+          />
+        </div> */}
+        {/* <div className="addProductItem">
+          <label>Is Series?</label>
+          <select name="isSeries" id="isSeries">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div> */}
+        {/* <div className="addProductItem">
+          <label>Trailer</label>
+          <input
+            type="file"
+            name="trailer"
+            onChange={(e) => setTrailer(e.target.files[0])}
+          />
+        </div> */}
+        <div className="addProductItem">
+          <label>Video</label>
+          <input
+            type="file"
+            name="video"
+            onChange={(e) => setVideo(e.target.files[0])}
+          />
+        </div>
+        <button className="addProductButton" >
+            Upload
+          </button>
       </form>
     </div>
-  </div>
   )
 }
 

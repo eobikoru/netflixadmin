@@ -1,8 +1,17 @@
 import React from 'react'
+import Sidebar from '../../component/sidebar/Sidebar'
+import Topbar from '../../component/topbar/Topbar'
 import './newuser.css'
 function Newuser() {
   return (
-    <div className="newUser">
+    <>
+    <Topbar/>
+    <div className="container">
+
+      <Sidebar/>
+      <div className="home">
+      <div className="homeWidgets">
+      <div className="newUser">
     <h1 className="newUserTitle">New User</h1>
     <form className="newUserForm">
       <div className="newUserItem">
@@ -50,6 +59,13 @@ function Newuser() {
       <button className="newUserButton">Create</button>
     </form>
   </div>
+
+      </div>
+
+      </div>
+  
+  </div>
+  </>
   )
 }
 
